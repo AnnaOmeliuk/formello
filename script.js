@@ -10,7 +10,7 @@ const translations = {
     navContacts: "контакти",
     langAria: "Мова: українська. Натисніть, щоб перемкнути на англійську",
     heroTitle:
-      "Створюємо дизайн сайтів<br />та логотипів, які<br />приводять клієнтів",
+      "Створюємо<br />дизайн сайтів та логотипів,<br />які приводять клієнтів",
     heroSub: "Лендінги, корпоративні сайти та брендинг під ключ",
     cta: "надіслати заявку",
     missionTitle: "Наша місія",
@@ -70,7 +70,7 @@ const translations = {
     navContacts: "contacts",
     langAria: "Language: English. Click to switch to Ukrainian",
     heroTitle:
-      "We create website and<br />logo designs that<br />bring in clients",
+      "We create<br />website and logo designs<br />that bring in clients",
     heroSub: "Landing pages, corporate websites, and turnkey branding",
     cta: "submit a request",
     missionTitle: "Our mission",
