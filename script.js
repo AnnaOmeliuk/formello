@@ -20,6 +20,18 @@ const translations = {
     philosophyTitle: "Філософія",
     philosophyText:
       "Ми віримо в баланс між чіткістю, естетикою та функціональністю в кожному створюваному нами дизайні.",
+    creativityTitle: "Креативність",
+    creativityText:
+      "Ми перетворюємо ідеї на продумані цифрові рішення, які є водночас візуально вишуканими та простими у використанні.",
+    valueTitle: "Цінність",
+    valueText:
+      "Наша увага зосереджена на створенні значущих цифрових інструментів, які приносять реальну цінність людям та бізнесу.",
+    collabTitle: "Співпраця",
+    collabText:
+      "Ми відкриті до співпраці з тими, хто поділяє наше бачення цілеспрямованого та впливового дизайну.",
+    visionTitle: "Бачення",
+    visionText:
+      "Ми прагнемо сформувати цифровий простір, де дизайн не лише красивий, а й справді корисний.",
     fabsAria: "Швидкі дії",
     fabTop: "Вгору",
     fabChat: "Чат",
@@ -68,6 +80,18 @@ const translations = {
     philosophyTitle: "Philosophy",
     philosophyText:
       "We believe in a balance of clarity, aesthetics, and functionality in every design we create.",
+    creativityTitle: "Creativity",
+    creativityText:
+      "We turn ideas into thoughtful digital solutions that are both visually refined and easy to use.",
+    valueTitle: "Value",
+    valueText:
+      "Our focus is on creating meaningful digital tools that bring real value to people and businesses.",
+    collabTitle: "Collaboration",
+    collabText:
+      "We are open to collaborating with those who share our vision of purposeful, impactful design.",
+    visionTitle: "Vision",
+    visionText:
+      "We aim to shape a digital space where design is not only beautiful, but truly useful.",
     fabsAria: "Quick actions",
     fabTop: "Back to top",
     fabChat: "Chat",
@@ -288,6 +312,21 @@ function showSuccessView({ animate = true } = {}) {
   }, FADE_MS);
 }
 
+function getScrollbarWidth() {
+  return Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+}
+
+function lockPageScroll() {
+  const scrollbarWidth = getScrollbarWidth();
+  document.documentElement.style.setProperty("--scrollbar-comp", `${scrollbarWidth}px`);
+  document.body.classList.add("is-modal-open");
+}
+
+function unlockPageScroll() {
+  document.body.classList.remove("is-modal-open");
+  document.documentElement.style.removeProperty("--scrollbar-comp");
+}
+
 function openModal() {
   if (!modal || isModalAnimating || modal.classList.contains("is-open")) return;
 
@@ -298,7 +337,7 @@ function openModal() {
 
   modal.hidden = false;
   modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("is-modal-open");
+  lockPageScroll();
 
   if (reduceMotion) {
     modal.classList.add("is-open");
@@ -323,7 +362,7 @@ function closeModal() {
     modal.classList.remove("is-open");
     modal.hidden = true;
     modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("is-modal-open");
+    unlockPageScroll();
     showFormView();
     clearFieldErrors();
     form?.reset();
