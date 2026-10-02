@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="title">Formello — дизайн сайтів та логотипів</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <a class="logo" href="#top">
+          <img
+            class="logo__mark"
+            src="assets/nav/logo-2.svg"
+            width="50"
+            height="67"
+            alt=""
+            aria-hidden="true"
+          />
+          <span class="logo__text">
+            <span class="logo__name">Formello</span>
+            <span class="logo__tag">Where creativity meets structure</span>
+          </span>
+        </a>
+
+        <div class="header-right">
+          <nav
+            class="nav"
+            id="site-nav"
+            aria-label="Основна навігація"
+            data-i18n-aria="navAria"
+          >
+            <a href="#portfolio" data-i18n="navPortfolio">портфоліо</a>
+            <a href="#services" data-i18n="navServices">послуги</a>
+            <a href="#about" data-i18n="navAbout">про нас</a>
+            <a href="#contacts" data-i18n="navContacts">контакти</a>
+          </nav>
+
+          <button
+            class="lang"
+            type="button"
+            data-lang="uk"
+            aria-label="Мова: українська"
+            data-i18n-aria="langAria"
+          >
+            <span class="lang__code">UK</span>
+            <svg
+              class="lang__chevron"
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M1 1l4 4 4-4"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            aria-label="Відкрити меню"
+            data-i18n-aria="menuOpenAria"
+          >
+            <span class="nav-toggle__box" aria-hidden="true">
+              <span class="nav-toggle__bar"></span>
+              <span class="nav-toggle__bar"></span>
+              <span class="nav-toggle__bar"></span>
+            </span>
+          </button>
+        </div>
+      </header>
+      <div class="nav-backdrop" data-close-nav aria-hidden="true"></div>
+
+      <main>
+        <section class="hero" id="top">
+          <div class="hero__bg" aria-hidden="true">
+            <img
+              class="hero__bg-img"
+              src="assets/hero/hero-bg.png"
+              alt=""
+              width="1536"
+              height="1024"
+              decoding="async"
+              fetchpriority="high"
+            />
+            <div class="hero__bg-overlay"></div>
+          </div>
+          <div class="hero__content">
+            <div class="hero__title-block">
+              <h1 data-i18n-html="heroTitle">
+                Створюємо<br />
+                дизайн сайтів та логотипів,<br />
+                які приводять клієнтів
+              </h1>
+              <p class="hero__sub" data-i18n="heroSub">
+                Лендінги, корпоративні сайти та брендинг під ключ
+              </p>
+            </div>
+            <button class="cta" type="button" data-open-request>
+              <span data-i18n="cta">надіслати заявку</span>
+              <svg
+                class="cta__arrow"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 11L11 3M11 3H4.5M11 3V9.5"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </section>
+
+        <section class="mission" id="about" aria-labelledby="mission-title">
+          <div class="mission__inner">
+            <h2 id="mission-title" data-i18n="missionTitle">Наша місія</h2>
+
+            <div class="mission__body">
+              <div class="mission__deco" aria-hidden="true">
+                <span class="mission__line mission__line--v"></span>
+                <span class="mission__line mission__line--h mission__line--h1"></span>
+                <span class="mission__line mission__line--h mission__line--h2"></span>
+
+                <span class="mission__node mission__node--1">
+                  <span class="mission__flare"></span>
+                  <span class="mission__mark"></span>
+                </span>
+                <span class="mission__node mission__node--2">
+                  <span class="mission__flare"></span>
+                  <span class="mission__mark"></span>
+                </span>
+              </div>
+
+              <div class="mission__rows">
+                <div class="mission__row">
+                  <article class="mission__card mission__card--left">
+                    <span class="mission__num" aria-hidden="true">1</span>
+                    <div class="mission__copy">
+                      <h3 data-i18n="goalTitle">Мета</h3>
+                      <p data-i18n="goalText">
+                        Ми створюємо цифрові продукти, що роблять роботу бізнесу
+                        простішою, організованішою та ефективнішою.
+                      </p>
+                    </div>
+                  </article>
+                  <article class="mission__card mission__card--right">
+                    <div class="mission__copy">
+                      <h3 data-i18n="philosophyTitle">Філософія</h3>
+                      <p data-i18n="philosophyText">
+                        Ми віримо в баланс між чіткістю, естетикою та
+                        функціональністю в кожному створюваному нами дизайні.
+                      </p>
+                    </div>
+                    <span class="mission__num" aria-hidden="true">2</span>
+                  </article>
+                </div>
+
+                <div class="mission__row">
+                  <article class="mission__card mission__card--left">
+                    <span class="mission__num" aria-hidden="true">3</span>
+                    <div class="mission__copy">
+                      <h3 data-i18n="creativityTitle">Креативність</h3>
+                      <p data-i18n="creativityText">
+                        Ми перетворюємо ідеї на продумані цифрові рішення, які є
+                        водночас візуально вишуканими та простими у використанні.
+                      </p>
+                    </div>
+                  </article>
+                  <article class="mission__card mission__card--right">
+                    <div class="mission__copy">
+                      <h3 data-i18n="valueTitle">Цінність</h3>
+                      <p data-i18n="valueText">
+                        Наша увага зосереджена на створенні значущих цифрових
+                        інструментів, які приносять реальну цінність людям та
+                        бізнесу.
+                      </p>
+                    </div>
+                    <span class="mission__num" aria-hidden="true">4</span>
+                  </article>
+                </div>
+
+                <div class="mission__row">
+                  <article class="mission__card mission__card--left">
+                    <span class="mission__num" aria-hidden="true">5</span>
+                    <div class="mission__copy">
+                      <h3 data-i18n="collabTitle">Співпраця</h3>
+                      <p data-i18n="collabText">
+                        Ми відкриті до співпраці з тими, хто поділяє наше
+                        бачення цілеспрямованого та впливового дизайну.
+                      </p>
+                    </div>
+                  </article>
+                  <article class="mission__card mission__card--right">
+                    <div class="mission__copy">
+                      <h3 data-i18n="visionTitle">Бачення</h3>
+                      <p data-i18n="visionText">
+                        Ми прагнемо сформувати цифровий простір, де дизайн не
+                        лише красивий, а й справді корисний.
+                      </p>
+                    </div>
+                    <span class="mission__num" aria-hidden="true">6</span>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="fabs" aria-label="Швидкі дії" data-i18n-aria="fabsAria">
+        <a class="fab" href="#top" aria-label="Вгору" data-i18n-aria="fabTop">
+          <img
+            src="assets/hero/fab-up.svg"
+            width="56"
+            height="56"
+            alt=""
+            aria-hidden="true"
+          />
+        </a>
+        <button class="fab" type="button" aria-label="Чат" data-i18n-aria="fabChat">
+          <img
+            src="assets/hero/fab-message.svg"
+            width="56"
+            height="56"
+            alt=""
+            aria-hidden="true"
+          />
+        </button>
+      </aside>
+    </div>
+
+    <div
+      class="modal"
+      id="request-modal"
+      hidden
+      aria-hidden="true"
+    >
+      <div class="modal__backdrop" data-close-request tabindex="-1"></div>
+      <div
+        class="modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="request-title"
+      >
+        <button
+          class="modal__close"
+          type="button"
+          data-close-request
+          data-i18n-aria="formCloseAria"
+          aria-label="Закрити"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M4 4l8 8M12 4L4 12"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+
+        <div class="modal__view modal__view--form" data-view="form">
+          <h2 id="request-title" class="modal__title" data-i18n="formTitle">
+            Надіслати заявку
+          </h2>
+          <p class="modal__lead" data-i18n="formLead">
+            Залиште контакти — ми відповімо протягом робочого дня.
+          </p>
+
+          <form class="request-form" id="request-form" novalidate>
+            <div class="field">
+              <label for="request-name" data-i18n="formName">Імʼя</label>
+              <input
+                id="request-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                data-i18n-placeholder="formNamePh"
+                placeholder="Ваше імʼя"
+              />
+              <p class="field__error" data-error-for="name" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="request-email" data-i18n="formEmail">Email</label>
+              <input
+                id="request-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                inputmode="email"
+                data-i18n-placeholder="formEmailPh"
+                placeholder="name@company.com"
+              />
+              <p class="field__error" data-error-for="email" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="request-phone" data-i18n="formPhone">Телефон</label>
+              <input
+                id="request-phone"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                inputmode="tel"
+                data-i18n-placeholder="formPhonePh"
+                placeholder="+380..."
+              />
+              <p class="field__error" data-error-for="phone" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="request-message" data-i18n="formMessage">Повідомлення</label>
+              <textarea
+                id="request-message"
+                name="message"
+                rows="3"
+                data-i18n-placeholder="formMessagePh"
+                placeholder="Коротко опишіть задачу"
+              ></textarea>
+              <p class="field__error" data-error-for="message" hidden></p>
+            </div>
+
+            <button class="cta request-form__submit" type="submit">
+              <span data-i18n="formSubmit">надіслати</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="modal__view modal__view--success" data-view="success" hidden>
+          <div class="modal__success-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.4" />
+              <path
+                d="M8 14.5l4 4 8-9"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <h2 class="modal__title" data-i18n="formSuccessTitle">Заявку надіслано</h2>
+          <p class="modal__lead" data-i18n="formSuccessText">
+            Дякуємо! Ми отримали вашу заявку і скоро звʼяжемося з вами.
+          </p>
+          <button class="cta" type="button" data-close-request>
+            <span data-i18n="formSuccessClose">закрити</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
