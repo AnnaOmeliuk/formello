@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -31,7 +31,12 @@
         </a>
 
         <div class="header-right">
-          <nav class="nav" aria-label="Основна навігація" data-i18n-aria="navAria">
+          <nav
+            class="nav"
+            id="site-nav"
+            aria-label="Основна навігація"
+            data-i18n-aria="navAria"
+          >
             <a href="#portfolio" data-i18n="navPortfolio">портфоліо</a>
             <a href="#services" data-i18n="navServices">послуги</a>
             <a href="#about" data-i18n="navAbout">про нас</a>
@@ -63,8 +68,24 @@
               />
             </svg>
           </button>
+
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            aria-label="Відкрити меню"
+            data-i18n-aria="menuOpenAria"
+          >
+            <span class="nav-toggle__box" aria-hidden="true">
+              <span class="nav-toggle__bar"></span>
+              <span class="nav-toggle__bar"></span>
+              <span class="nav-toggle__bar"></span>
+            </span>
+          </button>
         </div>
       </header>
+      <div class="nav-backdrop" data-close-nav aria-hidden="true"></div>
 
       <main>
         <section class="hero" id="top">
@@ -125,24 +146,11 @@
 
                 <span class="mission__node mission__node--1">
                   <span class="mission__flare"></span>
-                  <span class="mission__mark">
-                    <span class="mission__bar"></span>
-                    <span class="mission__bar"></span>
-                  </span>
+                  <span class="mission__mark"></span>
                 </span>
                 <span class="mission__node mission__node--2">
                   <span class="mission__flare"></span>
-                  <span class="mission__mark">
-                    <span class="mission__bar"></span>
-                    <span class="mission__bar"></span>
-                  </span>
-                </span>
-                <span class="mission__node mission__node--3">
-                  <span class="mission__flare"></span>
-                  <span class="mission__mark">
-                    <span class="mission__bar"></span>
-                    <span class="mission__bar"></span>
-                  </span>
+                  <span class="mission__mark"></span>
                 </span>
               </div>
 
@@ -226,8 +234,8 @@
         <a class="fab" href="#top" aria-label="Вгору" data-i18n-aria="fabTop">
           <img
             src="assets/hero/fab-up.svg"
-            width="120"
-            height="120"
+            width="56"
+            height="56"
             alt=""
             aria-hidden="true"
           />
@@ -235,8 +243,8 @@
         <button class="fab" type="button" aria-label="Чат" data-i18n-aria="fabChat">
           <img
             src="assets/hero/fab-message.svg"
-            width="120"
-            height="120"
+            width="56"
+            height="56"
             alt=""
             aria-hidden="true"
           />
@@ -329,7 +337,7 @@
               <textarea
                 id="request-message"
                 name="message"
-                rows="4"
+                rows="3"
                 data-i18n-placeholder="formMessagePh"
                 placeholder="Коротко опишіть задачу"
               ></textarea>

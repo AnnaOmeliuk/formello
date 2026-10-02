@@ -8,9 +8,11 @@ const translations = {
     navServices: "послуги",
     navAbout: "про нас",
     navContacts: "контакти",
+    menuOpenAria: "Відкрити меню",
+    menuCloseAria: "Закрити меню",
     langAria: "Мова: українська. Натисніть, щоб перемкнути на англійську",
     heroTitle:
-      "Створюємо<br />дизайн сайтів та логотипів,<br />які приводять клієнтів",
+      "Створюємо<br /> дизайн сайтів та логотипів,<br /> які приводять клієнтів",
     heroSub: "Лендінги, корпоративні сайти та брендинг під ключ",
     cta: "надіслати заявку",
     missionTitle: "Наша місія",
@@ -68,9 +70,11 @@ const translations = {
     navServices: "services",
     navAbout: "about us",
     navContacts: "contacts",
+    menuOpenAria: "Open menu",
+    menuCloseAria: "Close menu",
     langAria: "Language: English. Click to switch to Ukrainian",
     heroTitle:
-      "We create<br />website and logo designs<br />that bring in clients",
+      "We create<br /> website and logo designs<br /> that bring in clients",
     heroSub: "Landing pages, corporate websites, and turnkey branding",
     cta: "submit a request",
     missionTitle: "Our mission",
@@ -129,6 +133,7 @@ const PHONE_RE = /^\+?[\d\s()-]{10,}$/;
 const langButton = document.querySelector(".lang");
 const langCode = document.querySelector(".lang__code");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const mobileNavQuery = window.matchMedia("(max-width: 720px)");
 
 const modal = document.getElementById("request-modal");
 const form = document.getElementById("request-form");
@@ -136,6 +141,9 @@ const formView = modal?.querySelector('[data-view="form"]');
 const successView = modal?.querySelector('[data-view="success"]');
 const openTriggers = document.querySelectorAll("[data-open-request]");
 const closeTriggers = document.querySelectorAll("[data-close-request]");
+const nav = document.getElementById("site-nav");
+const navToggle = document.querySelector(".nav-toggle");
+const navBackdrop = document.querySelector("[data-close-nav]");
 
 let isSwitching = false;
 let isModalAnimating = false;
@@ -180,6 +188,7 @@ function setTexts(lang) {
     langButton.dataset.lang = lang;
     langButton.setAttribute("aria-label", dict.langAria);
   }
+  syncNavToggleLabel();
 
   refreshVisibleErrors();
 
@@ -324,7 +333,53 @@ function lockPageScroll() {
 
 function unlockPageScroll() {
   document.body.classList.remove("is-modal-open");
-  document.documentElement.style.removeProperty("--scrollbar-comp");
+  if (!document.body.classList.contains("is-nav-open")) {
+    document.documentElement.style.removeProperty("--scrollbar-comp");
+  }
+}
+
+function isNavOpen() {
+  return document.body.classList.contains("is-nav-open");
+}
+
+function syncNavToggleLabel() {
+  if (!navToggle) return;
+  const dict = t();
+  const key = isNavOpen() ? "menuCloseAria" : "menuOpenAria";
+  navToggle.setAttribute("aria-label", dict[key]);
+  navToggle.setAttribute("data-i18n-aria", key);
+}
+
+function openNav() {
+  if (!nav || !navToggle || isNavOpen()) return;
+
+  if (!document.body.classList.contains("is-modal-open")) {
+    const scrollbarWidth = getScrollbarWidth();
+    document.documentElement.style.setProperty("--scrollbar-comp", `${scrollbarWidth}px`);
+  }
+
+  document.body.classList.add("is-nav-open");
+  navToggle.setAttribute("aria-expanded", "true");
+  if (navBackdrop) navBackdrop.setAttribute("aria-hidden", "false");
+  syncNavToggleLabel();
+}
+
+function closeNav() {
+  if (!nav || !navToggle || !isNavOpen()) return;
+
+  document.body.classList.remove("is-nav-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  if (navBackdrop) navBackdrop.setAttribute("aria-hidden", "true");
+  syncNavToggleLabel();
+
+  if (!document.body.classList.contains("is-modal-open")) {
+    document.documentElement.style.removeProperty("--scrollbar-comp");
+  }
+}
+
+function toggleNav() {
+  if (isNavOpen()) closeNav();
+  else openNav();
 }
 
 function openModal() {
@@ -399,6 +454,24 @@ openTriggers.forEach((el) => el.addEventListener("click", openModal));
 closeTriggers.forEach((el) => el.addEventListener("click", closeModal));
 form?.addEventListener("submit", onSubmit);
 
+navToggle?.addEventListener("click", toggleNav);
+navBackdrop?.addEventListener("click", closeNav);
+nav?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    if (mobileNavQuery.matches) closeNav();
+  });
+});
+
+function onMobileNavQueryChange() {
+  if (!mobileNavQuery.matches) closeNav();
+}
+
+if (typeof mobileNavQuery.addEventListener === "function") {
+  mobileNavQuery.addEventListener("change", onMobileNavQueryChange);
+} else if (typeof mobileNavQuery.addListener === "function") {
+  mobileNavQuery.addListener(onMobileNavQueryChange);
+}
+
 form?.querySelectorAll("input, textarea").forEach((el) => {
   el.addEventListener("input", () => {
     const field = el.closest(".field");
@@ -408,9 +481,17 @@ form?.querySelectorAll("input, textarea").forEach((el) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && modal && !modal.hidden) {
+  if (event.key !== "Escape") return;
+
+  if (modal && !modal.hidden) {
     event.preventDefault();
     closeModal();
+    return;
+  }
+
+  if (isNavOpen()) {
+    event.preventDefault();
+    closeNav();
   }
 });
 
