@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="588" height="271" viewBox="0 0 588 271" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="588" y2="271" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12081f"/>
+      <stop offset="0.45" stop-color="#1a0a36"/>
+      <stop offset="1" stop-color="#061428"/>
+    </linearGradient>
+    <radialGradient id="glowL" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(80 220) rotate(-20) scale(220 160)">
+      <stop stop-color="#7b3cff" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#7b3cff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowR" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(480 40) scale(200 180)">
+      <stop stop-color="#3ec7ff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#3ec7ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="36" y1="48" x2="250" y2="230" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0a1626" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#12263a" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+  <rect width="588" height="271" rx="8" fill="url(#bg)"/>
+  <rect width="588" height="271" rx="8" fill="url(#glowL)"/>
+  <rect width="588" height="271" rx="8" fill="url(#glowR)"/>
+  <rect x="28" y="28" width="220" height="215" rx="10" fill="url(#panel)" stroke="rgba(91,174,219,0.35)"/>
+  <rect x="48" y="52" width="110" height="10" rx="5" fill="#6fccff" fill-opacity="0.85"/>
+  <rect x="48" y="76" width="170" height="8" rx="4" fill="#ffffff" fill-opacity="0.55"/>
+  <rect x="48" y="94" width="150" height="8" rx="4" fill="#ffffff" fill-opacity="0.35"/>
+  <rect x="48" y="122" width="96" height="28" rx="6" fill="rgba(91,174,219,0.35)" stroke="rgba(91,174,219,0.75)"/>
+  <circle cx="390" cy="128" r="72" fill="rgba(126,80,255,0.28)" stroke="rgba(160,120,255,0.45)"/>
+  <circle cx="390" cy="118" r="28" fill="rgba(255,255,255,0.12)"/>
+  <path d="M350 188c10-28 28-42 40-42s30 14 40 42" fill="rgba(255,255,255,0.1)"/>
+  <rect x="300" y="210" width="180" height="8" rx="4" fill="#ffffff" fill-opacity="0.28"/>
+  <rect x="330" y="228" width="120" height="6" rx="3" fill="#6fccff" fill-opacity="0.45"/>
+</svg>
