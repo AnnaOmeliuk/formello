@@ -17,6 +17,34 @@ const translations = {
     cta: "надіслати заявку",
     missionTitle: "Наша місія",
     worksTitle: "Наші роботи",
+    servicesTitle: "Наші послуги",
+    servicesTabsAria: "Категорії послуг",
+    servicesTabDesign: "графічний дизайн",
+    servicesTabWeb: "вебсайти",
+    servicesDesign1Title: "Логотип",
+    servicesDesign1Text: "Унікальний знак, що відображає суть вашого бренду",
+    servicesDesign2Title: "Бренд-айдентика",
+    servicesDesign2Text: "Повна система візуальної ідентифікації під ключ",
+    servicesDesign3Title: "Поліграфія",
+    servicesDesign3Text: "Візитки, презентації та друковані матеріали",
+    servicesDesign4Title: "Упаковка",
+    servicesDesign4Text: "Дизайн упаковки та етикеток для продукту",
+    servicesDesign5Title: "Соцмережі",
+    servicesDesign5Text: "Візуали та шаблони для контенту в соцмережах",
+    servicesDesign6Title: "Ілюстрація",
+    servicesDesign6Text: "Кастомні ілюстрації під ваш продукт і комунікації",
+    servicesWeb1Title: "Лендінг",
+    servicesWeb1Text: "Односторінковий сайт, що конвертує відвідувачів у клієнтів",
+    servicesWeb2Title: "Корпоративний сайт",
+    servicesWeb2Text: "Багатосторінковий сайт для компанії та її послуг",
+    servicesWeb3Title: "UI/UX дизайн",
+    servicesWeb3Text: "Продумані інтерфейси з фокусом на зручність і ясність",
+    servicesWeb4Title: "Редизайн",
+    servicesWeb4Text: "Оновлення застарілого сайту під сучасні стандарти",
+    servicesWeb5Title: "Інтернет-магазин",
+    servicesWeb5Text: "Структура й дизайн для зручних онлайн-продажів",
+    servicesWeb6Title: "Підтримка",
+    servicesWeb6Text: "Супровід, оновлення та розвиток після запуску",
     works1Title: "“Nova Coffee - Brand & Website”",
     works1Service1: "Logo design",
     works1Service2: "Brand identity",
@@ -101,6 +129,34 @@ const translations = {
     cta: "submit a request",
     missionTitle: "Our mission",
     worksTitle: "Our work",
+    servicesTitle: "Our services",
+    servicesTabsAria: "Service categories",
+    servicesTabDesign: "graphic design",
+    servicesTabWeb: "websites",
+    servicesDesign1Title: "Logo",
+    servicesDesign1Text: "A unique mark that captures the essence of your brand",
+    servicesDesign2Title: "Brand identity",
+    servicesDesign2Text: "A complete visual identity system, end to end",
+    servicesDesign3Title: "Print design",
+    servicesDesign3Text: "Business cards, decks, and printed materials",
+    servicesDesign4Title: "Packaging",
+    servicesDesign4Text: "Packaging and label design for your product",
+    servicesDesign5Title: "Social media",
+    servicesDesign5Text: "Visuals and templates for social content",
+    servicesDesign6Title: "Illustration",
+    servicesDesign6Text: "Custom illustrations for your product and campaigns",
+    servicesWeb1Title: "Landing page",
+    servicesWeb1Text: "A one-page site that turns visitors into clients",
+    servicesWeb2Title: "Corporate website",
+    servicesWeb2Text: "A multi-page site for your company and services",
+    servicesWeb3Title: "UI/UX design",
+    servicesWeb3Text: "Thoughtful interfaces focused on clarity and ease",
+    servicesWeb4Title: "Redesign",
+    servicesWeb4Text: "Refreshing an outdated site to modern standards",
+    servicesWeb5Title: "E-commerce",
+    servicesWeb5Text: "Structure and design for smooth online sales",
+    servicesWeb6Title: "Support",
+    servicesWeb6Text: "Ongoing updates and growth after launch",
     works1Title: "“Nova Coffee - Brand & Website”",
     works1Service1: "Logo design",
     works1Service2: "Brand identity",
@@ -492,6 +548,93 @@ function onSubmit(event) {
 
   showSuccessView({ animate: true });
 }
+
+const servicesSection = document.getElementById("services");
+const servicesTabs = servicesSection
+  ? [...servicesSection.querySelectorAll("[data-services-tab]")]
+  : [];
+const servicesPanels = servicesSection
+  ? [...servicesSection.querySelectorAll("[data-services-panel]")]
+  : [];
+let isServicesSwitching = false;
+
+function setServicesTab(nextId, { animate = true } = {}) {
+  const nextTab = servicesTabs.find((tab) => tab.dataset.servicesTab === nextId);
+  const nextPanel = servicesPanels.find((panel) => panel.dataset.servicesPanel === nextId);
+  const currentPanel = servicesPanels.find((panel) => !panel.hidden);
+
+  if (!nextTab || !nextPanel || nextPanel === currentPanel || isServicesSwitching) return;
+
+  servicesTabs.forEach((tab) => {
+    const active = tab === nextTab;
+    tab.classList.toggle("is-active", active);
+    tab.setAttribute("aria-selected", active ? "true" : "false");
+    tab.tabIndex = active ? 0 : -1;
+  });
+
+  const swap = () => {
+    if (currentPanel) currentPanel.hidden = true;
+    nextPanel.hidden = false;
+  };
+
+  if (!animate || reduceMotion || !currentPanel) {
+    if (currentPanel) {
+      currentPanel.classList.remove("is-fading-out", "is-fading-in");
+    }
+    nextPanel.classList.remove("is-fading-out", "is-fading-in");
+    swap();
+    return;
+  }
+
+  isServicesSwitching = true;
+  currentPanel.classList.add("is-fading-out");
+
+  window.setTimeout(() => {
+    currentPanel.hidden = true;
+    currentPanel.classList.remove("is-fading-out");
+
+    nextPanel.hidden = false;
+    nextPanel.classList.add("is-fading-in");
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        nextPanel.classList.remove("is-fading-in");
+      });
+    });
+
+    window.setTimeout(() => {
+      isServicesSwitching = false;
+    }, FADE_MS);
+  }, FADE_MS);
+}
+
+servicesTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    setServicesTab(tab.dataset.servicesTab, { animate: true });
+  });
+
+  tab.addEventListener("keydown", (event) => {
+    const index = servicesTabs.indexOf(tab);
+    if (index < 0) return;
+
+    let nextIndex = -1;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      nextIndex = (index + 1) % servicesTabs.length;
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      nextIndex = (index - 1 + servicesTabs.length) % servicesTabs.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = servicesTabs.length - 1;
+    }
+
+    if (nextIndex < 0) return;
+    event.preventDefault();
+    const nextTab = servicesTabs[nextIndex];
+    setServicesTab(nextTab.dataset.servicesTab, { animate: true });
+    nextTab.focus();
+  });
+});
 
 if (langButton) langButton.addEventListener("click", toggleLanguage);
 openTriggers.forEach((el) => el.addEventListener("click", openModal));
