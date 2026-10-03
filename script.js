@@ -45,6 +45,57 @@ const translations = {
     servicesWeb5Text: "Структура й дизайн для зручних онлайн-продажів",
     servicesWeb6Title: "Підтримка",
     servicesWeb6Text: "Супровід, оновлення та розвиток після запуску",
+    pricesTitle: "Вартість послуг",
+    pricesTabsAria: "Категорії цін",
+    pricesTabDesign: "графічний дизайн",
+    pricesTabWeb: "вебсайти",
+    pricesDesign1Title: "Логотип",
+    pricesDesign1Item1: "Бриф і дослідження",
+    pricesDesign1Item2: "3–5 концепцій",
+    pricesDesign1Item3: "Фінальна версія",
+    pricesDesign1Item4: "Файли для друку та вебу",
+    pricesDesign1Price: "Від 1000грн",
+    pricesDesign2Title: "Бренд-айдентика",
+    pricesDesign2Item1: "Логотип і варіації",
+    pricesDesign2Item2: "Кольорова система",
+    pricesDesign2Item3: "Типографіка",
+    pricesDesign2Item4: "Брендбук",
+    pricesDesign2Price: "Від 3500грн",
+    pricesDesign3Title: "Соцмережі",
+    pricesDesign3Item1: "Візуальна концепція",
+    pricesDesign3Item2: "Шаблони постів",
+    pricesDesign3Item3: "Обкладинки та сторіс",
+    pricesDesign3Item4: "Гайд по стилю",
+    pricesDesign3Price: "Від 2000грн",
+    pricesWeb1Title: "Дизайн сайту",
+    pricesWeb1Item1: "Збір інформації",
+    pricesWeb1Item2: "Генерація ідеї",
+    pricesWeb1Item3: "Прототипування",
+    pricesWeb1Item4: "Преміум дизайн",
+    pricesWeb1Price: "Від 1000грн",
+    pricesWeb2Title: "Лендінг",
+    pricesWeb2Item1: "Структура та UX",
+    pricesWeb2Item2: "Дизайн секцій",
+    pricesWeb2Item3: "Адаптив під мобільні",
+    pricesWeb2Item4: "Підготовка до верстки",
+    pricesWeb2Price: "Від 2500грн",
+    pricesWeb3Title: "Корпоративний сайт",
+    pricesWeb3Item1: "Архітектура сторінок",
+    pricesWeb3Item2: "UI-система",
+    pricesWeb3Item3: "Дизайн ключових екранів",
+    pricesWeb3Item4: "Передача в розробку",
+    pricesWeb3Price: "Від 5000грн",
+    offerTitle:
+      "Отримай <span class=\"offer__accent\">20%</span> знижки<br /> на свій перший проект!",
+    offerLead:
+      "Ідеально підходить для стартапів та малого бізнесу, який хоче швидко запуститися",
+    offerNameLabel: "Імʼя",
+    offerPhoneLabel: "Телефон",
+    offerEmailLabel: "Email",
+    offerNamePh: "Ваше імʼя*",
+    offerPhonePh: "Ваш телефон*",
+    offerEmailPh: "Ваш email*",
+    offerSuccess: "Дякуємо! Ми отримали заявку і скоро звʼяжемося.",
     works1Title: "“Nova Coffee - Brand & Website”",
     works1Service1: "Logo design",
     works1Service2: "Brand identity",
@@ -157,6 +208,57 @@ const translations = {
     servicesWeb5Text: "Structure and design for smooth online sales",
     servicesWeb6Title: "Support",
     servicesWeb6Text: "Ongoing updates and growth after launch",
+    pricesTitle: "Service costs",
+    pricesTabsAria: "Price categories",
+    pricesTabDesign: "graphic design",
+    pricesTabWeb: "websites",
+    pricesDesign1Title: "Logo",
+    pricesDesign1Item1: "Brief & research",
+    pricesDesign1Item2: "3–5 concepts",
+    pricesDesign1Item3: "Final mark",
+    pricesDesign1Item4: "Print & web files",
+    pricesDesign1Price: "From 1000 UAH",
+    pricesDesign2Title: "Brand identity",
+    pricesDesign2Item1: "Logo & variations",
+    pricesDesign2Item2: "Color system",
+    pricesDesign2Item3: "Typography",
+    pricesDesign2Item4: "Brand book",
+    pricesDesign2Price: "From 3500 UAH",
+    pricesDesign3Title: "Social media",
+    pricesDesign3Item1: "Visual concept",
+    pricesDesign3Item2: "Post templates",
+    pricesDesign3Item3: "Covers & stories",
+    pricesDesign3Item4: "Style guide",
+    pricesDesign3Price: "From 2000 UAH",
+    pricesWeb1Title: "Website design",
+    pricesWeb1Item1: "Information gathering",
+    pricesWeb1Item2: "Idea generation",
+    pricesWeb1Item3: "Prototyping",
+    pricesWeb1Item4: "Premium design",
+    pricesWeb1Price: "From 1000 UAH",
+    pricesWeb2Title: "Landing page",
+    pricesWeb2Item1: "Structure & UX",
+    pricesWeb2Item2: "Section design",
+    pricesWeb2Item3: "Mobile adaptation",
+    pricesWeb2Item4: "Handoff for build",
+    pricesWeb2Price: "From 2500 UAH",
+    pricesWeb3Title: "Corporate website",
+    pricesWeb3Item1: "Page architecture",
+    pricesWeb3Item2: "UI system",
+    pricesWeb3Item3: "Key screen design",
+    pricesWeb3Item4: "Dev handoff",
+    pricesWeb3Price: "From 5000 UAH",
+    offerTitle:
+      "Get <span class=\"offer__accent\">20%</span> off<br /> your first project!",
+    offerLead:
+      "Ideal for startups and small businesses that want to launch quickly",
+    offerNameLabel: "Name",
+    offerPhoneLabel: "Phone",
+    offerEmailLabel: "Email",
+    offerNamePh: "Your name*",
+    offerPhonePh: "Your phone*",
+    offerEmailPh: "Your email*",
+    offerSuccess: "Thank you! We’ve received your request and will contact you soon.",
     works1Title: "“Nova Coffee - Brand & Website”",
     works1Service1: "Logo design",
     works1Service2: "Brand identity",
@@ -244,6 +346,8 @@ const closeTriggers = document.querySelectorAll("[data-close-request]");
 const nav = document.getElementById("site-nav");
 const navToggle = document.querySelector(".nav-toggle");
 const navBackdrop = document.querySelector("[data-close-nav]");
+const offerForm = document.getElementById("offer-form");
+const offerSuccess = document.querySelector("[data-offer-success]");
 
 let isSwitching = false;
 let isModalAnimating = false;
@@ -374,9 +478,15 @@ function validateForm() {
 }
 
 function refreshVisibleErrors() {
-  if (!form) return;
-  const hasVisibleErrors = [...form.querySelectorAll(".field.is-invalid")].length > 0;
-  if (hasVisibleErrors) validateForm();
+  if (form) {
+    const hasVisibleErrors = [...form.querySelectorAll(".field.is-invalid")].length > 0;
+    if (hasVisibleErrors) validateForm();
+  }
+
+  if (offerForm) {
+    const hasOfferErrors = [...offerForm.querySelectorAll(".offer__field.is-invalid")].length > 0;
+    if (hasOfferErrors) validateOfferForm();
+  }
 }
 
 function showFormView() {
@@ -635,6 +745,192 @@ servicesTabs.forEach((tab) => {
     nextTab.focus();
   });
 });
+
+const pricesSection = document.getElementById("prices");
+const pricesTabs = pricesSection
+  ? [...pricesSection.querySelectorAll("[data-prices-tab]")]
+  : [];
+const pricesPanels = pricesSection
+  ? [...pricesSection.querySelectorAll("[data-prices-panel]")]
+  : [];
+let isPricesSwitching = false;
+
+function setPricesTab(nextId, { animate = true } = {}) {
+  const nextTab = pricesTabs.find((tab) => tab.dataset.pricesTab === nextId);
+  const nextPanel = pricesPanels.find((panel) => panel.dataset.pricesPanel === nextId);
+  const currentPanel = pricesPanels.find((panel) => !panel.hidden);
+
+  if (!nextTab || !nextPanel || nextPanel === currentPanel || isPricesSwitching) return;
+
+  pricesTabs.forEach((tab) => {
+    const active = tab === nextTab;
+    tab.classList.toggle("is-active", active);
+    tab.setAttribute("aria-selected", active ? "true" : "false");
+    tab.tabIndex = active ? 0 : -1;
+  });
+
+  const swap = () => {
+    if (currentPanel) currentPanel.hidden = true;
+    nextPanel.hidden = false;
+  };
+
+  if (!animate || reduceMotion || !currentPanel) {
+    if (currentPanel) {
+      currentPanel.classList.remove("is-fading-out", "is-fading-in");
+    }
+    nextPanel.classList.remove("is-fading-out", "is-fading-in");
+    swap();
+    return;
+  }
+
+  isPricesSwitching = true;
+  currentPanel.classList.add("is-fading-out");
+
+  window.setTimeout(() => {
+    currentPanel.hidden = true;
+    currentPanel.classList.remove("is-fading-out");
+
+    nextPanel.hidden = false;
+    nextPanel.classList.add("is-fading-in");
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        nextPanel.classList.remove("is-fading-in");
+      });
+    });
+
+    window.setTimeout(() => {
+      isPricesSwitching = false;
+    }, FADE_MS);
+  }, FADE_MS);
+}
+
+pricesTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    setPricesTab(tab.dataset.pricesTab, { animate: true });
+  });
+
+  tab.addEventListener("keydown", (event) => {
+    const index = pricesTabs.indexOf(tab);
+    if (index < 0) return;
+
+    let nextIndex = -1;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      nextIndex = (index + 1) % pricesTabs.length;
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      nextIndex = (index - 1 + pricesTabs.length) % pricesTabs.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = pricesTabs.length - 1;
+    }
+
+    if (nextIndex < 0) return;
+    event.preventDefault();
+    const nextTab = pricesTabs[nextIndex];
+    setPricesTab(nextTab.dataset.pricesTab, { animate: true });
+    nextTab.focus();
+  });
+});
+
+let isOfferSwitching = false;
+
+function clearOfferFieldErrors() {
+  offerForm?.querySelectorAll(".offer__field").forEach((field) => {
+    field.classList.remove("is-invalid");
+    const error = field.querySelector(".field__error");
+    if (error) {
+      error.hidden = true;
+      error.textContent = "";
+    }
+  });
+}
+
+function setOfferFieldError(name, message) {
+  const input = offerForm?.elements.namedItem(name);
+  if (!input || !("closest" in input)) return;
+  const field = input.closest(".offer__field");
+  const error = field?.querySelector(`[data-offer-error-for="${name}"]`);
+  if (!field || !error) return;
+  field.classList.add("is-invalid");
+  error.hidden = false;
+  error.textContent = message;
+}
+
+function validateOfferForm() {
+  const dict = t();
+  const values = {
+    name: String(offerForm?.name?.value || "").trim(),
+    email: String(offerForm?.email?.value || "").trim(),
+    phone: String(offerForm?.phone?.value || "").trim(),
+  };
+
+  clearOfferFieldErrors();
+  const errors = {};
+
+  if (!values.name) errors.name = dict.errNameRequired;
+  else if (values.name.length < 2) errors.name = dict.errNameShort;
+
+  if (!values.phone) errors.phone = dict.errPhoneRequired;
+  else if (!PHONE_RE.test(values.phone)) errors.phone = dict.errPhoneInvalid;
+
+  if (!values.email) errors.email = dict.errEmailRequired;
+  else if (!EMAIL_RE.test(values.email)) errors.email = dict.errEmailInvalid;
+
+  Object.entries(errors).forEach(([name, message]) => setOfferFieldError(name, message));
+  return { ok: Object.keys(errors).length === 0, values, errors };
+}
+
+function showOfferSuccess({ animate = true } = {}) {
+  if (!offerForm || !offerSuccess || isOfferSwitching) return;
+
+  if (!animate || reduceMotion) {
+    offerForm.hidden = true;
+    offerSuccess.hidden = false;
+    offerForm.classList.remove("is-fading-out", "is-fading-in");
+    offerSuccess.classList.remove("is-fading-out", "is-fading-in");
+    return;
+  }
+
+  isOfferSwitching = true;
+  offerForm.classList.add("is-fading-out");
+
+  window.setTimeout(() => {
+    offerForm.hidden = true;
+    offerForm.classList.remove("is-fading-out");
+
+    offerSuccess.hidden = false;
+    offerSuccess.classList.add("is-fading-in");
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        offerSuccess.classList.remove("is-fading-in");
+      });
+    });
+
+    window.setTimeout(() => {
+      isOfferSwitching = false;
+    }, FADE_MS);
+  }, FADE_MS);
+}
+
+function onOfferSubmit(event) {
+  event.preventDefault();
+  if (isOfferSwitching) return;
+
+  const result = validateOfferForm();
+  if (!result.ok) {
+    const firstInvalid = offerForm.querySelector(
+      ".offer__field.is-invalid input"
+    );
+    firstInvalid?.focus();
+    return;
+  }
+
+  showOfferSuccess({ animate: true });
+}
+
+offerForm?.addEventListener("submit", onOfferSubmit);
 
 if (langButton) langButton.addEventListener("click", toggleLanguage);
 openTriggers.forEach((el) => el.addEventListener("click", openModal));
