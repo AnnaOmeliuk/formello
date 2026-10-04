@@ -190,6 +190,11 @@ const translations = {
     fabsAria: "Швидкі дії",
     fabTop: "Вгору",
     fabChat: "Чат",
+    fabChatClose: "Закрити соцмережі",
+    fabWhatsApp: "WhatsApp",
+    fabTelegram: "Telegram",
+    fabDiscord: "Discord",
+    fabInstagram: "Instagram",
     formTitle: "Надіслати заявку",
     formLead: "Залиште контакти — ми відповімо протягом робочого дня.",
     formName: "Імʼя",
@@ -407,6 +412,11 @@ const translations = {
     fabsAria: "Quick actions",
     fabTop: "Back to top",
     fabChat: "Chat",
+    fabChatClose: "Close social links",
+    fabWhatsApp: "WhatsApp",
+    fabTelegram: "Telegram",
+    fabDiscord: "Discord",
+    fabInstagram: "Instagram",
     formTitle: "Submit a request",
     formLead: "Leave your contacts — we’ll reply within one business day.",
     formName: "Name",
@@ -1518,3 +1528,81 @@ function initScrollReveal() {
 }
 
 initScrollReveal();
+
+/* ——— Social FABs ——— */
+function initFabSocials() {
+  const root = document.querySelector(".fab-social");
+  const toggle = document.querySelector("[data-fab-chat]");
+  const panel = document.querySelector("[data-fab-socials]");
+  if (!root || !toggle || !panel) return;
+
+  let open = false;
+  let timer = 0;
+
+  const closeDelay = FADE_MS + 120;
+
+  function setToggleLabel(isOpen) {
+    const lang = document.documentElement.lang === "en" ? "en" : "uk";
+    const key = isOpen ? "fabChatClose" : "fabChat";
+    toggle.setAttribute("aria-label", translations[lang][key]);
+    toggle.setAttribute("data-i18n-aria", key);
+  }
+
+  function openPanel() {
+    window.clearTimeout(timer);
+    panel.hidden = false;
+    root.classList.remove("is-closing");
+    // Double rAF so the browser paints the closed state before transitioning
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        root.classList.add("is-open");
+      });
+    });
+    open = true;
+    toggle.setAttribute("aria-expanded", "true");
+    setToggleLabel(true);
+  }
+
+  function closePanel() {
+    if (!open && panel.hidden) return;
+    window.clearTimeout(timer);
+    root.classList.add("is-closing");
+    root.classList.remove("is-open");
+    open = false;
+    toggle.setAttribute("aria-expanded", "false");
+    setToggleLabel(false);
+
+    const finish = () => {
+      root.classList.remove("is-closing");
+      panel.hidden = true;
+    };
+
+    if (reduceMotion) {
+      finish();
+      return;
+    }
+
+    timer = window.setTimeout(finish, closeDelay);
+  }
+
+  toggle.addEventListener("click", () => {
+    if (open) closePanel();
+    else openPanel();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && open) closePanel();
+  });
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      if (!open) return;
+      if (root.contains(event.target)) return;
+      closePanel();
+    },
+    true
+  );
+}
+
+initFabSocials();
