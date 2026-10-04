@@ -1443,3 +1443,78 @@ function initReviewsCarousel() {
 }
 
 initReviewsCarousel();
+
+/* ——— Scroll reveal ——— */
+function initScrollReveal() {
+  const targets = document.querySelectorAll(
+    [
+      ".mission__inner > h2",
+      ".mission__card",
+      ".works__inner > h2",
+      ".works__card",
+      ".services__inner > h2",
+      ".services__tabs",
+      ".services__panels",
+      ".pricing__inner > h2",
+      ".pricing__tabs",
+      ".pricing__panels",
+      ".offer__copy",
+      ".offer__form",
+      ".clients__inner > h2",
+      ".clients__slider",
+      ".reviews__inner > h2",
+      ".reviews__carousel",
+      ".about__inner > h2",
+      ".about__copy",
+      ".about__brand",
+      ".contact__inner > h2",
+      ".contact__info",
+      ".contact__panel",
+    ].join(", ")
+  );
+
+  if (!targets.length) return;
+
+  if (reduceMotion) {
+    targets.forEach((el) => el.classList.add("is-inview"));
+    return;
+  }
+
+  const groups = new Map();
+
+  targets.forEach((el) => {
+    el.setAttribute("data-reveal", "");
+    const groupRoot =
+      el.closest("section") || el.closest(".about-block") || el.parentElement;
+    if (!groups.has(groupRoot)) groups.set(groupRoot, []);
+    groups.get(groupRoot).push(el);
+  });
+
+  groups.forEach((els) => {
+    els.forEach((el, index) => {
+      el.style.setProperty("--reveal-delay", `${Math.min(index, 5) * 50}ms`);
+    });
+  });
+
+  const reveal = (el) => el.classList.add("is-inview");
+
+  if (!("IntersectionObserver" in window)) {
+    targets.forEach(reveal);
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        reveal(entry.target);
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+}
+
+initScrollReveal();

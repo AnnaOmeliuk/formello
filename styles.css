@@ -2648,6 +2648,21 @@ body.is-modal-open .fabs {
 }
 
 /* ——— Motion ——— */
+/* Scroll reveal — same language as fade-up (opacity + translateY, ease) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -2692,6 +2707,12 @@ body.is-modal-open .fabs {
   .cta,
   .mission__mark {
     animation: none;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
   [data-i18n],
