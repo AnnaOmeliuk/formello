@@ -8,7 +8,6 @@
   --cta-fill: rgba(10, 26, 40, 0.72);
   --cta-border: rgba(91, 174, 219, 0.85);
   --cta-glow: rgba(91, 174, 219, 0.45);
-  --fab-circle: rgba(1, 54, 94, 0.5);
   --number: rgba(91, 174, 219, 0.22);
   --container: 1200px;
   --pad-x: clamp(20px, 5.5vw, 120px);
@@ -2529,8 +2528,9 @@ body.is-nav-open {
 
 .contact__cta {
   width: 100%;
-  padding: 16px 28px;
-  font-size: clamp(15px, 1.6vw, 20px);
+  min-height: 56px;
+  padding: 18px 36px;
+  font-size: clamp(16px, 1.8vw, var(--fs-btn));
 }
 
 .contact__success {
@@ -2667,22 +2667,12 @@ body.is-modal-open .fabs {
 }
 
 .fab--social {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--fab-circle);
   opacity: 0;
   transform: translateY(4px);
   pointer-events: none;
   transition:
     opacity 0.22s ease,
     transform 0.22s ease;
-}
-
-.fab.fab--social img {
-  width: 50%;
-  height: 50%;
-  object-fit: contain;
 }
 
 .fab-social.is-open .fab--social {
@@ -2940,11 +2930,6 @@ body.is-modal-open .fabs {
   .fab img {
     width: 52px;
     height: 52px;
-  }
-
-  .fab.fab--social img {
-    width: 50%;
-    height: 50%;
   }
 }
 
@@ -3461,11 +3446,6 @@ body.is-modal-open .fabs {
   .fab img {
     width: 44px;
     height: 44px;
-  }
-
-  .fab.fab--social img {
-    width: 50%;
-    height: 50%;
   }
 }
 
