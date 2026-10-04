@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": "node .cursor/hooks/check-i18n-after-edit.js",
+        "timeout": 30
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "node .cursor/hooks/guard-destructive-git.js",
+        "matcher": "git\\s+(push\\s+.*--force|push\\s+-f\\b|reset\\s+--hard|clean\\s+-fd|branch\\s+-D)",
+        "failClosed": true,
+        "timeout": 10
+      }
+    ]
+  }
+}

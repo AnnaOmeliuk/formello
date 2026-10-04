@@ -17,6 +17,37 @@ const translations = {
     cta: "надіслати заявку",
     missionTitle: "Наша місія",
     worksTitle: "Наші роботи",
+    clientsTitle: "Наші клієнти",
+    clientsListAria: "Логотипи клієнтів",
+    reviewsTitle: "Відгуки наших клієнтів",
+    reviewsListAria: "Відгуки клієнтів",
+    reviewsPrev: "Попередній відгук",
+    reviewsNext: "Наступний відгук",
+    reviewsRatingAria: "Оцінка 5 з 5",
+    reviews1Name: "Роберт Фокс",
+    reviews1Role: "Директор, кавʼярня «Кава на двох»",
+    reviews1Text:
+      "Вдячні компанії за допомогу! Працюють великі професіонали! Рекомендую!",
+    reviews2Name: "Анна Коваленко",
+    reviews2Role: "Засновниця, студія «Line & Form»",
+    reviews2Text:
+      "Швидко зрозуміли наш запит і зібрали чистий лендінг, який реально приводить заявки.",
+    reviews3Name: "Максим Петренко",
+    reviews3Role: "CEO, Nova Logistics",
+    reviews3Text:
+      "Сильна команда: від айдентики до сайту все виглядає цілісно і сучасно.",
+    reviews4Name: "Олена Мельник",
+    reviews4Role: "Маркетолог, SoftPeak",
+    reviews4Text:
+      "Дуже зручна комунікація і продуманий дизайн. Результат перевершив очікування.",
+    reviews5Name: "Ігор Савчук",
+    reviews5Role: "Власник, Craft & Clay",
+    reviews5Text:
+      "Отримали логотип і сайт, з якими приємно презентувати бренд клієнтам.",
+    reviews6Name: "Марія Гончар",
+    reviews6Role: "Product lead, BrightLab",
+    reviews6Text:
+      "Уважні до деталей і бізнес-цілей. Рекомендую як надійних партнерів.",
     servicesTitle: "Наші послуги",
     servicesTabsAria: "Категорії послуг",
     servicesTabDesign: "графічний дизайн",
@@ -180,6 +211,37 @@ const translations = {
     cta: "submit a request",
     missionTitle: "Our mission",
     worksTitle: "Our work",
+    clientsTitle: "Our clients",
+    clientsListAria: "Client logos",
+    reviewsTitle: "What our clients say",
+    reviewsListAria: "Client reviews",
+    reviewsPrev: "Previous review",
+    reviewsNext: "Next review",
+    reviewsRatingAria: "Rating 5 out of 5",
+    reviews1Name: "Robert Fox",
+    reviews1Role: "Director, Café “Coffee for Two”",
+    reviews1Text:
+      "Grateful for the help! True professionals at work. Highly recommend!",
+    reviews2Name: "Anna Kovalenko",
+    reviews2Role: "Founder, Line & Form studio",
+    reviews2Text:
+      "They quickly understood our brief and built a clean landing page that actually brings leads.",
+    reviews3Name: "Maksym Petrenko",
+    reviews3Role: "CEO, Nova Logistics",
+    reviews3Text:
+      "A strong team: from identity to website, everything feels cohesive and modern.",
+    reviews4Name: "Olena Melnyk",
+    reviews4Role: "Marketer, SoftPeak",
+    reviews4Text:
+      "Communication was smooth and the design was thoughtful. The result exceeded expectations.",
+    reviews5Name: "Ihor Savchuk",
+    reviews5Role: "Owner, Craft & Clay",
+    reviews5Text:
+      "We got a logo and website we’re proud to show clients.",
+    reviews6Name: "Mariia Honchar",
+    reviews6Role: "Product lead, BrightLab",
+    reviews6Text:
+      "Attentive to detail and business goals. Reliable partners we’d recommend.",
     servicesTitle: "Our services",
     servicesTabsAria: "Service categories",
     servicesTabDesign: "graphic design",
@@ -987,3 +1049,232 @@ try {
 }
 
 applyLanguage(initial);
+
+/* ——— Clients slider ——— */
+const CLIENTS_INTERVAL_MS = 2800;
+
+function initClientsSlider() {
+  const slider = document.querySelector("[data-clients-slider]");
+  const track = document.querySelector("[data-clients-track]");
+  if (!slider || !track) return;
+
+  const originals = Array.from(track.children);
+  if (!originals.length) return;
+
+  originals.forEach((item) => {
+    const clone = item.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    track.appendChild(clone);
+  });
+
+  let index = 0;
+  let timer = null;
+  let hovering = false;
+  let visible = true;
+  let animating = false;
+
+  function stepWidth() {
+    const item = track.querySelector(".clients__item");
+    if (!item) return 0;
+    const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+    return item.getBoundingClientRect().width + gap;
+  }
+
+  function setOffset(nextIndex, animate) {
+    const x = stepWidth() * nextIndex;
+    track.style.transition = animate && !reduceMotion ? `transform ${FADE_MS}ms ease` : "none";
+    track.style.transform = `translateX(-${x}px)`;
+  }
+
+  function advance() {
+    if (animating || hovering || !visible || reduceMotion) return;
+    animating = true;
+    index += 1;
+    setOffset(index, true);
+
+    window.setTimeout(() => {
+      if (index >= originals.length) {
+        index = 0;
+        setOffset(0, false);
+        void track.offsetWidth;
+      }
+      animating = false;
+    }, FADE_MS);
+  }
+
+  function stop() {
+    if (timer != null) {
+      window.clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function start() {
+    stop();
+    if (reduceMotion) return;
+    timer = window.setInterval(advance, CLIENTS_INTERVAL_MS);
+  }
+
+  slider.addEventListener("mouseenter", () => {
+    hovering = true;
+  });
+  slider.addEventListener("mouseleave", () => {
+    hovering = false;
+  });
+  slider.addEventListener(
+    "focusin",
+    () => {
+      hovering = true;
+    },
+    true
+  );
+  slider.addEventListener(
+    "focusout",
+    (event) => {
+      if (!slider.contains(event.relatedTarget)) hovering = false;
+    },
+    true
+  );
+
+  window.addEventListener("resize", () => {
+    setOffset(index, false);
+  });
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = Boolean(entry?.isIntersecting);
+        if (visible) start();
+        else stop();
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(slider);
+  } else {
+    start();
+  }
+
+  setOffset(0, false);
+}
+
+initClientsSlider();
+
+/* ——— Reviews carousel ——— */
+function initReviewsCarousel() {
+  const root = document.querySelector("[data-reviews-carousel]");
+  const track = document.querySelector("[data-reviews-track]");
+  const prevBtn = document.querySelector("[data-reviews-prev]");
+  const nextBtn = document.querySelector("[data-reviews-next]");
+  if (!root || !track || !prevBtn || !nextBtn) return;
+
+  const cards = Array.from(track.children);
+  if (!cards.length) return;
+
+  let index = 0;
+  let animating = false;
+  let visibleCount = 3;
+
+  function readVisibleCount() {
+    const slider = root.querySelector(".reviews__slider");
+    if (!slider) return 1;
+    const raw = getComputedStyle(slider).getPropertyValue("--reviews-visible").trim();
+    const parsed = Number.parseInt(raw, 10);
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
+  }
+
+  function maxIndex() {
+    return Math.max(0, cards.length - visibleCount);
+  }
+
+  function stepWidth() {
+    const card = track.querySelector(".reviews__card");
+    if (!card) return 0;
+    const gap =
+      parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  function setOffset(nextIndex, animate) {
+    const x = stepWidth() * nextIndex;
+    track.style.transition =
+      animate && !reduceMotion ? `transform ${FADE_MS}ms ease` : "none";
+    track.style.transform = `translateX(-${x}px)`;
+  }
+
+  function updateNav() {
+    const atStart = index <= 0;
+    const atEnd = index >= maxIndex();
+    prevBtn.disabled = atStart;
+    nextBtn.disabled = atEnd;
+  }
+
+  function goTo(nextIndex, animate = true) {
+    const clamped = Math.min(Math.max(nextIndex, 0), maxIndex());
+    if (clamped === index) {
+      updateNav();
+      return;
+    }
+    if (animating && animate && !reduceMotion) return;
+
+    index = clamped;
+    updateNav();
+
+    if (!animate || reduceMotion) {
+      setOffset(index, false);
+      return;
+    }
+
+    animating = true;
+    setOffset(index, true);
+    window.setTimeout(() => {
+      animating = false;
+    }, FADE_MS);
+  }
+
+  function refresh() {
+    visibleCount = readVisibleCount();
+    if (index > maxIndex()) index = maxIndex();
+    setOffset(index, false);
+    updateNav();
+  }
+
+  prevBtn.addEventListener("click", () => goTo(index - 1, true));
+  nextBtn.addEventListener("click", () => goTo(index + 1, true));
+
+  root.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      goTo(index - 1, true);
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      goTo(index + 1, true);
+    }
+  });
+
+  let touchStartX = null;
+  root.addEventListener(
+    "touchstart",
+    (event) => {
+      touchStartX = event.changedTouches[0]?.clientX ?? null;
+    },
+    { passive: true }
+  );
+  root.addEventListener(
+    "touchend",
+    (event) => {
+      if (touchStartX == null) return;
+      const endX = event.changedTouches[0]?.clientX ?? touchStartX;
+      const delta = endX - touchStartX;
+      touchStartX = null;
+      if (Math.abs(delta) < 40) return;
+      if (delta > 0) goTo(index - 1, true);
+      else goTo(index + 1, true);
+    },
+    { passive: true }
+  );
+
+  window.addEventListener("resize", refresh);
+  refresh();
+}
+
+initReviewsCarousel();

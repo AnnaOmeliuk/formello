@@ -1,0 +1,38 @@
+/* Snippet: extend Formello tokens — keep in sync with styles.css :root */
+:root {
+  --bg: #010106;
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.72);
+  --text-secondary: #eef8ff;
+  --accent: #6fccff;
+  --line: rgba(1, 54, 94, 0.85);
+  --cta-fill: rgba(10, 26, 40, 0.72);
+  --cta-border: rgba(91, 174, 219, 0.85);
+  --cta-glow: rgba(91, 174, 219, 0.45);
+  --number: rgba(91, 174, 219, 0.22);
+  --container: 1200px;
+  --pad-x: clamp(20px, 5.5vw, 120px);
+  --font: "Onest", sans-serif;
+  /* Desktop type scale — Onest Regular (400) / SemiBold (600) only */
+  --fs-h1: 72px;
+  --fw-h1: 600;
+  --lh-h1: 1.2;
+  --fs-h2: 64px;
+  --fw-h2: 600;
+  --lh-h2: 1.2;
+  --fs-h3: 56px;
+  --fw-h3: 400;
+  --lh-h3: 1.2;
+  --fs-h4: 36px;
+  --fw-h4: 600;
+  --lh-h4: 1.2;
+  --fs-h5: 36px;
+  --fw-h5: 400;
+  --lh-h5: 1.2;
+  --fs-body: 24px;
+  --fw-body: 400;
+  --lh-body: 1.5;
+  --fs-btn: 24px;
+  --fw-btn: 400;
+  --lh-btn: 1.2;
+}

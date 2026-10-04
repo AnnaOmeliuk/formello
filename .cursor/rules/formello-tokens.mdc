@@ -1,0 +1,19 @@
+---
+description: Formello design tokens and typography constraints
+globs: styles.css,index.html
+alwaysApply: false
+---
+
+# Formello tokens
+
+Reuse `:root` variables; do not hardcode colors outside tokens.
+
+Canonical colors: `--bg`, `--text`, `--text-muted`, `--accent`, `--cta-fill`, `--cta-border`, `--cta-glow`. Layout: `--container` (1200px), `--pad-x`. Desktop frame ~1440.
+
+Typography utilities: `.type-h1` … `.type-h5`, `.type-body`, `.type-btn`. Do **not** add font-weight 500 or 700.
+
+New cards, inputs, dialogs must match dark navy + cyan CTA border/glow.
+
+Exceptions (not in type scale): `.logo__tag`, `.field__error`, `.mission__num`. Request modal chrome stays compact (smaller title/lead/inputs than page scale).
+
+Snippet: `.cursor/skills/formello-patterns/assets/tokens.snippet.css`.

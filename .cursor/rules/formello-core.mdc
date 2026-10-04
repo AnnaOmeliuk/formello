@@ -1,0 +1,22 @@
+---
+description: Formello landing core — stack, brand look, UI change checklist
+alwaysApply: true
+---
+
+# Formello core
+
+Static landing only: `index.html`, `styles.css`, `script.js`. No frameworks.
+
+- Font: **Onest** weights **400** and **600** only (`wght@400;600`)
+- Look: dark navy + cyan CTA glow — preserve this language (not a generic light theme)
+- Prefer CSS/SVG over new raster assets
+- Nav / CTA labels stay **lowercase** as in the design
+
+When changing UI:
+
+1. Extend `:root` tokens / type utilities — no one-off colors
+2. Wire UK/EN i18n for every new string
+3. Reuse `FADE_MS` / `MODAL_MS` motion
+4. Run `node .cursor/skills/formello-patterns/scripts/check-i18n.js`
+
+Details, boilerplate, and checklists: skill **formello-patterns**.
