@@ -1,0 +1,28 @@
+---
+description: Formello UK/EN i18n — attributes, dictionaries, persistence
+globs: index.html,script.js
+alwaysApply: false
+---
+
+# Formello i18n
+
+- Toggle codes: **UK** / **EN** (not UA)
+- Source of truth: `translations.uk` / `translations.en` in `script.js`
+- Persist: `localStorage` key `formello-lang`; set `document.documentElement.lang` to `uk` / `en`
+
+| Attribute | Applies |
+|-----------|---------|
+| `data-i18n` | textContent |
+| `data-i18n-html` | innerHTML (titles with `<br>`) |
+| `data-i18n-aria` | aria-label |
+| `data-i18n-placeholder` | placeholder |
+
+Every new visible string (and JS-only errors like `err*`) needs **both** `uk` and `en` keys. Prefer camelCase by area (`heroTitle`, `formName`).
+
+After copy changes:
+
+```bash
+node .cursor/skills/formello-patterns/scripts/check-i18n.js
+```
+
+Full checklist: skill **formello-patterns** → `references/i18n-checklist.md`.

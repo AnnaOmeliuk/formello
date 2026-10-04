@@ -1,0 +1,22 @@
+---
+description: Formello motion timings and reduced-motion rules
+globs: script.js,styles.css
+alwaysApply: false
+---
+
+# Formello motion
+
+One motion language — reuse constants from `script.js`; do not invent parallel durations.
+
+| Constant | Value | Use |
+|----------|-------|-----|
+| `FADE_MS` | `220` | Lang swap, form ↔ success crossfade |
+| `MODAL_MS` | `240` | Modal open / close |
+
+Shared fade: opacity + `translateY(4px)`, `0.22s ease`.
+
+Always honor `prefers-reduced-motion: reduce` (skip timed fades; disable listed CSS transitions).
+
+Do not add springs, bounce, or long staggered delays. On modal close: unlock scroll and restore focus.
+
+Details: skill **formello-patterns** → `references/motion.md`.
