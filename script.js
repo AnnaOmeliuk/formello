@@ -127,6 +127,27 @@ const translations = {
     offerPhonePh: "Ваш телефон*",
     offerEmailPh: "Ваш email*",
     offerSuccess: "Дякуємо! Ми отримали заявку і скоро звʼяжемося.",
+    aboutTitle: "Про нас",
+    aboutName: "Formello",
+    aboutText:
+      "Ми — креативна команда, яка створює дизайн з характером. Наша мета — поєднувати естетику, структуру та сенс у кожному проєкті. Ми віримо, що хороший дизайн не просто прикрашає, а допомагає бізнесу рости, виділятися та говорити з аудиторією впевнено.",
+    contactTitle: "Контакти",
+    contactLead: "Вирішимо потребу<br />вашого бізнесу",
+    contactNameLabel: "Імʼя",
+    contactLastNameLabel: "Прізвище",
+    contactPhoneLabel: "Телефон",
+    contactEmailLabel: "Email",
+    contactMessageLabel: "Повідомлення",
+    contactNamePh: "Ваше імʼя*",
+    contactLastNamePh: "Ваше прізвище*",
+    contactPhonePh: "Ваш телефон*",
+    contactEmailPh: "Ваш email*",
+    contactMessagePh: "Повідомлення",
+    contactSuccess: "Дякуємо! Ми отримали заявку і скоро звʼяжемося.",
+    footerCopy: "© 2026 Formello.com.ua. Всі права захищені.",
+    footerNavAria: "Політики",
+    footerPrivacy: "Політика конфіденційності",
+    footerCookies: "Політика Cookie",
     works1Title: "“Nova Coffee - Brand & Website”",
     works1Service1: "Logo design",
     works1Service2: "Brand identity",
@@ -186,6 +207,8 @@ const translations = {
     formSuccessClose: "закрити",
     errNameRequired: "Вкажіть імʼя",
     errNameShort: "Імʼя має містити щонайменше 2 символи",
+    errLastNameRequired: "Вкажіть прізвище",
+    errLastNameShort: "Прізвище має містити щонайменше 2 символи",
     errEmailRequired: "Вкажіть email",
     errEmailInvalid: "Введіть коректний email",
     errPhoneRequired: "Вкажіть телефон",
@@ -321,6 +344,27 @@ const translations = {
     offerPhonePh: "Your phone*",
     offerEmailPh: "Your email*",
     offerSuccess: "Thank you! We’ve received your request and will contact you soon.",
+    aboutTitle: "About us",
+    aboutName: "Formello",
+    aboutText:
+      "We are a creative team that builds design with character. Our goal is to unite aesthetics, structure, and meaning in every project. We believe good design does more than decorate — it helps businesses grow, stand out, and speak to their audience with confidence.",
+    contactTitle: "Contacts",
+    contactLead: "We’ll solve your<br />business needs",
+    contactNameLabel: "First name",
+    contactLastNameLabel: "Last name",
+    contactPhoneLabel: "Phone",
+    contactEmailLabel: "Email",
+    contactMessageLabel: "Message",
+    contactNamePh: "Your first name*",
+    contactLastNamePh: "Your last name*",
+    contactPhonePh: "Your phone*",
+    contactEmailPh: "Your email*",
+    contactMessagePh: "Message",
+    contactSuccess: "Thank you! We’ve received your request and will contact you soon.",
+    footerCopy: "© 2026 Formello.com.ua. All rights reserved.",
+    footerNavAria: "Policies",
+    footerPrivacy: "Privacy Policy",
+    footerCookies: "Cookie Policy",
     works1Title: "“Nova Coffee - Brand & Website”",
     works1Service1: "Logo design",
     works1Service2: "Brand identity",
@@ -380,6 +424,8 @@ const translations = {
     formSuccessClose: "close",
     errNameRequired: "Please enter your name",
     errNameShort: "Name must be at least 2 characters",
+    errLastNameRequired: "Please enter your last name",
+    errLastNameShort: "Last name must be at least 2 characters",
     errEmailRequired: "Please enter your email",
     errEmailInvalid: "Enter a valid email address",
     errPhoneRequired: "Please enter your phone number",
@@ -410,6 +456,8 @@ const navToggle = document.querySelector(".nav-toggle");
 const navBackdrop = document.querySelector("[data-close-nav]");
 const offerForm = document.getElementById("offer-form");
 const offerSuccess = document.querySelector("[data-offer-success]");
+const contactForm = document.getElementById("contact-form");
+const contactSuccess = document.querySelector("[data-contact-success]");
 
 let isSwitching = false;
 let isModalAnimating = false;
@@ -548,6 +596,13 @@ function refreshVisibleErrors() {
   if (offerForm) {
     const hasOfferErrors = [...offerForm.querySelectorAll(".offer__field.is-invalid")].length > 0;
     if (hasOfferErrors) validateOfferForm();
+  }
+
+  if (contactForm) {
+    const hasContactErrors = [
+      ...contactForm.querySelectorAll(".contact__field.is-invalid"),
+    ].length > 0;
+    if (hasContactErrors) validateContactForm();
   }
 }
 
@@ -993,6 +1048,116 @@ function onOfferSubmit(event) {
 }
 
 offerForm?.addEventListener("submit", onOfferSubmit);
+
+let isContactSwitching = false;
+
+function clearContactFieldErrors() {
+  contactForm?.querySelectorAll(".contact__field").forEach((field) => {
+    field.classList.remove("is-invalid");
+    const error = field.querySelector(".field__error");
+    if (error) {
+      error.hidden = true;
+      error.textContent = "";
+    }
+  });
+}
+
+function setContactFieldError(name, message) {
+  const input = contactForm?.elements.namedItem(name);
+  if (!input || !("closest" in input)) return;
+  const field = input.closest(".contact__field");
+  const error = field?.querySelector(`[data-contact-error-for="${name}"]`);
+  if (!field || !error) return;
+  field.classList.add("is-invalid");
+  error.hidden = false;
+  error.textContent = message;
+}
+
+function validateContactForm() {
+  const dict = t();
+  const values = {
+    name: String(contactForm?.name?.value || "").trim(),
+    lastname: String(contactForm?.lastname?.value || "").trim(),
+    email: String(contactForm?.email?.value || "").trim(),
+    phone: String(contactForm?.phone?.value || "").trim(),
+    message: String(contactForm?.message?.value || "").trim(),
+  };
+
+  clearContactFieldErrors();
+  const errors = {};
+
+  if (!values.name) errors.name = dict.errNameRequired;
+  else if (values.name.length < 2) errors.name = dict.errNameShort;
+
+  if (!values.lastname) errors.lastname = dict.errLastNameRequired;
+  else if (values.lastname.length < 2) errors.lastname = dict.errLastNameShort;
+
+  if (!values.phone) errors.phone = dict.errPhoneRequired;
+  else if (!PHONE_RE.test(values.phone)) errors.phone = dict.errPhoneInvalid;
+
+  if (!values.email) errors.email = dict.errEmailRequired;
+  else if (!EMAIL_RE.test(values.email)) errors.email = dict.errEmailInvalid;
+
+  if (values.message && values.message.length < 10) {
+    errors.message = dict.errMessageShort;
+  }
+
+  Object.entries(errors).forEach(([name, message]) =>
+    setContactFieldError(name, message)
+  );
+  return { ok: Object.keys(errors).length === 0, values, errors };
+}
+
+function showContactSuccess({ animate = true } = {}) {
+  if (!contactForm || !contactSuccess || isContactSwitching) return;
+
+  if (!animate || reduceMotion) {
+    contactForm.hidden = true;
+    contactSuccess.hidden = false;
+    contactForm.classList.remove("is-fading-out", "is-fading-in");
+    contactSuccess.classList.remove("is-fading-out", "is-fading-in");
+    return;
+  }
+
+  isContactSwitching = true;
+  contactForm.classList.add("is-fading-out");
+
+  window.setTimeout(() => {
+    contactForm.hidden = true;
+    contactForm.classList.remove("is-fading-out");
+
+    contactSuccess.hidden = false;
+    contactSuccess.classList.add("is-fading-in");
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        contactSuccess.classList.remove("is-fading-in");
+      });
+    });
+
+    window.setTimeout(() => {
+      isContactSwitching = false;
+    }, FADE_MS);
+  }, FADE_MS);
+}
+
+function onContactSubmit(event) {
+  event.preventDefault();
+  if (isContactSwitching) return;
+
+  const result = validateContactForm();
+  if (!result.ok) {
+    const firstInvalid = contactForm.querySelector(
+      ".contact__field.is-invalid input, .contact__field.is-invalid textarea"
+    );
+    firstInvalid?.focus();
+    return;
+  }
+
+  showContactSuccess({ animate: true });
+}
+
+contactForm?.addEventListener("submit", onContactSubmit);
 
 if (langButton) langButton.addEventListener("click", toggleLanguage);
 openTriggers.forEach((el) => el.addEventListener("click", openModal));
