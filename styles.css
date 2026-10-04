@@ -8,6 +8,7 @@
   --cta-fill: rgba(10, 26, 40, 0.72);
   --cta-border: rgba(91, 174, 219, 0.85);
   --cta-glow: rgba(91, 174, 219, 0.45);
+  --fab-circle: rgba(1, 54, 94, 0.5);
   --number: rgba(91, 174, 219, 0.22);
   --container: 1200px;
   --pad-x: clamp(20px, 5.5vw, 120px);
@@ -2647,6 +2648,85 @@ body.is-modal-open .fabs {
   opacity: 0.92;
 }
 
+.fab-social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.fab-social__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.fab-social__panel[hidden] {
+  display: none;
+}
+
+.fab--social {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--fab-circle);
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+}
+
+.fab.fab--social img {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+}
+
+.fab-social.is-open .fab--social {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.fab-social.is-open .fab--social:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.fab-social.is-open .fab--social:nth-child(2) {
+  transition-delay: 40ms;
+}
+
+.fab-social.is-open .fab--social:nth-child(3) {
+  transition-delay: 80ms;
+}
+
+.fab-social.is-open .fab--social:nth-child(4) {
+  transition-delay: 120ms;
+}
+
+.fab-social.is-closing .fab--social:nth-child(1) {
+  transition-delay: 120ms;
+}
+
+.fab-social.is-closing .fab--social:nth-child(2) {
+  transition-delay: 80ms;
+}
+
+.fab-social.is-closing .fab--social:nth-child(3) {
+  transition-delay: 40ms;
+}
+
+.fab-social.is-closing .fab--social:nth-child(4) {
+  transition-delay: 0ms;
+}
+
+.fab-social.is-open .fab[data-fab-chat] {
+  opacity: 1;
+}
+
 /* ——— Motion ——— */
 /* Scroll reveal — same language as fade-up (opacity + translateY, ease) */
 [data-reveal] {
@@ -2744,7 +2824,8 @@ body.is-modal-open .fabs {
   .contact__field input,
   .contact__field textarea,
   .contact__link,
-  .site-footer__links a {
+  .site-footer__links a,
+  .fab--social {
     transition: none;
   }
 
@@ -2859,6 +2940,11 @@ body.is-modal-open .fabs {
   .fab img {
     width: 52px;
     height: 52px;
+  }
+
+  .fab.fab--social img {
+    width: 50%;
+    height: 50%;
   }
 }
 
@@ -3359,6 +3445,14 @@ body.is-modal-open .fabs {
     gap: 2px;
   }
 
+  .fab-social {
+    gap: 2px;
+  }
+
+  .fab-social__panel {
+    gap: 2px;
+  }
+
   .fab {
     width: 44px;
     height: 44px;
@@ -3367,6 +3461,11 @@ body.is-modal-open .fabs {
   .fab img {
     width: 44px;
     height: 44px;
+  }
+
+  .fab.fab--social img {
+    width: 50%;
+    height: 50%;
   }
 }
 
